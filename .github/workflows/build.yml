@@ -22,12 +22,12 @@ jobs:
       - name: Read Json file
         id: read-json
         run: |
-          echo "config<<EOF" >> $GITHUB_OUTPUT
-          cat ./config.json >> $GITHUB_OUTPUT
+          echo "version<<EOF" >> $GITHUB_OUTPUT
+          cat ./version.json >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-      - name: Add platform in output
+      - name: Add version in output
         id: read-attribute
-        run: echo "platform=${{fromJson(steps.read-json.outputs.config).platform}}" >> "$GITHUB_OUTPUT"
+        run: echo "version=${{fromJson(steps.read-json.outputs.version).version}}" >> "$GITHUB_OUTPUT"
       - name: Build and test
         uses: ./.github/actions/build-test-custom-actions
         with:
