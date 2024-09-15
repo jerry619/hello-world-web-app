@@ -1,8 +1,6 @@
 from config import CONNECT as CON
 import requests
 
-# Additional headers.
-headers = {"Content-Type": "application/json"}
 
 
 def pretty_print_request(request):
