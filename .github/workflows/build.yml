@@ -54,17 +54,17 @@ jobs:
           coverage run -m pytest  -v -s
           coverage report -m
           coverage html
-          ls
           #pytest --doctest-modules --junitxml=junit/pytest-results-${{ env.PYTHON_VERSION }}.xml --cov=com --cov-report=xml --cov-report=html
         continue-on-error: true
-      #- name: Upload pytest test results
-      #  uses: actions/upload-artifact@v4
-      #  with:
-      #    name: pytest-results-${{ env.PYTHON_VERSION }}
-      #    path: junit/test-results-${{ env.PYTHON_VERSION }}.xml
+      - name: Upload pytest test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-results-${{ env.PYTHON_VERSION }}
+          path: htmlcov/index.html
         # Use always() to always run this step to publish test results when there are test failures
         if: ${{ always() }}
   build_image_and_push:
+    needs: build-and-test
     timeout-minutes: 30
     name: build image and push
     runs-on: ubuntu-latest
