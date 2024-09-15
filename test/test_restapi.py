@@ -38,9 +38,9 @@ def test_get_all_config():
     assert resp.status_code == 200
     resp_body = str(resp.content)
     print(resp_body)
+    assert len(resp_body) == 13
+    print(resp.headers["Content-Type"])
     '''
-    resp_body = resp.json()
-    assert len(resp_body) == 4
     assert resp.headers["Content-Type"] == "application/json"
     pretty_print_request(resp.request)
     pretty_print_response(resp)
