@@ -49,4 +49,4 @@ jobs:
         with:
           file: ./docker/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/pythontest:$version
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/pythontest:${{ env.version }}
