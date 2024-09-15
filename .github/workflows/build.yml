@@ -19,10 +19,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Read Json file
+        id: read-json
+        run: |
+          echo "config<<EOF" >> $GITHUB_OUTPUT
+          cat ./config.json >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+      - name: Add platform in output
+        id: read-attribute
+        run: echo "platform=${{fromJson(steps.read-json.outputs.config).platform}}" >> "$GITHUB_OUTPUT"
       - name: Build and test
         uses: ./.github/actions/build-test-custom-actions
         with:
-          num: ${{ env.PYTHON_VERSION }}
+          num: ${{ env.PYTHON_VERSION }}  
   build_image_and_push:
     needs: build-and-test
     timeout-minutes: 30
