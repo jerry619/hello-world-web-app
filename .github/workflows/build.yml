@@ -19,14 +19,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Read Json file
-        id: read-json
+      - name: Getting version
+        id: get-version
         run: |
           version=`echo $(jq -r '.version' version.json)`
-          echo $version
-      #- name: Add version in output
-      #  id: read-attribute
-      #  run: echo "version=${{fromJson(steps.read-json.outputs.version).version}}" >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
       - name: Build and test
         uses: ./.github/actions/build-test-custom-actions
         with:
