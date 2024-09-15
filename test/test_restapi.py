@@ -40,6 +40,6 @@ def test_get_all_config():
     '''
     assert len(resp_body) == 4
     assert resp.headers["Content-Type"] == "application/json"
-    '''
     pretty_print_request(resp.request)
     pretty_print_response(resp)
+    '''
