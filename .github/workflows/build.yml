@@ -22,12 +22,10 @@ jobs:
       - name: Read Json file
         id: read-json
         run: |
-          echo "version<<EOF" >> $GITHUB_OUTPUT
-          cat ./version.json >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-      - name: Add version in output
-        id: read-attribute
-        run: echo "version=${{fromJson(steps.read-json.outputs.version).version}}" >> "$GITHUB_OUTPUT"
+          version=`echo $(jq -r '.version' version.json)`
+      #- name: Add version in output
+      #  id: read-attribute
+      #  run: echo "version=${{fromJson(steps.read-json.outputs.version).version}}" >> "$GITHUB_OUTPUT"
       - name: Build and test
         uses: ./.github/actions/build-test-custom-actions
         with:
