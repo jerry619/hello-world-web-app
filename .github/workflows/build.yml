@@ -23,6 +23,7 @@ jobs:
         id: read-json
         run: |
           version=`echo $(jq -r '.version' version.json)`
+          echo $version
       #- name: Add version in output
       #  id: read-attribute
       #  run: echo "version=${{fromJson(steps.read-json.outputs.version).version}}" >> "$GITHUB_OUTPUT"
