@@ -2,7 +2,6 @@ from config import CONNECT as CON
 import requests
 
 
-
 def pretty_print_request(request):
     print(
         "\n{}\n{}\n\n{}\n\n{}\n".format(
@@ -41,4 +40,3 @@ def test_get_all_config():
     assert resp.headers["Content-Type"] == "text/html; charset=utf-8"
     pretty_print_request(resp.request)
     pretty_print_response(resp)
-
