@@ -40,8 +40,7 @@ def test_get_all_config():
     print(resp_body)
     assert len(resp_body) == 16
     print(resp.headers["Content-Type"])
-    '''
-    assert resp.headers["Content-Type"] == "application/json"
+    assert resp.headers["Content-Type"] == "text/html"
     pretty_print_request(resp.request)
     pretty_print_response(resp)
-    '''
+
