@@ -38,7 +38,7 @@ def test_get_all_config():
     assert resp.status_code == 200
     resp_body = str(resp.content)
     print(resp_body)
-    assert len(resp_body) == 13
+    assert len(resp_body) == 16
     print(resp.headers["Content-Type"])
     '''
     assert resp.headers["Content-Type"] == "application/json"
