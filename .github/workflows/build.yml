@@ -19,11 +19,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Getting version
-        id: get-version
-        run: |
-          version=`echo $(jq -r '.version' version.json)`
-          echo "version=$version" >> "$GITHUB_OUTPUT"
       - name: Build and test
         uses: ./.github/actions/build-test-custom-actions
         with:
@@ -40,6 +35,11 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Getting version
+        id: get-version
+        run: |
+          version=`echo $(jq -r '.version' version.json)`
+          echo "version=$version" >> "$GITHUB_OUTPUT"
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Build and push
