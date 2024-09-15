@@ -48,11 +48,13 @@ jobs:
       - name: Run application
         run: |
           cd src
-          gunicorn --bind=0.0.0.0:8000 wsgi:app
+          gunicorn --bind=0.0.0.0:8000 wsgi:app --daemon
       - name: Testing the project using pytest
         run: |
           coverage run -m pytest  -v -s
-          coverage report -m 
+          coverage report -m
+          coverage html
+          ls
           #pytest --doctest-modules --junitxml=junit/pytest-results-${{ env.PYTHON_VERSION }}.xml --cov=com --cov-report=xml --cov-report=html
         continue-on-error: true
       #- name: Upload pytest test results
